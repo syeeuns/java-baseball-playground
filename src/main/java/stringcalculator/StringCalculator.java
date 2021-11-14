@@ -1,48 +1,33 @@
 package stringcalculator;
 
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.Objects;
+import java.util.Queue;
+
 public class StringCalculator {
 
-  public static final String[] OPERATORS = {"+", "-", "*", "/"};
+  private final Queue<String> values = new LinkedList<>();
 
-
-  public int process(String input) {
-    String[] parsed = input.split(" ");
-    String operator = "";
-    int result = Integer.parseInt(parsed[0]);
-    for (String s : parsed) {
-      if (isOperator(s)) {
-        operator = s;
-        continue;
-      }
-      result = calculate(operator, result, s);
+  public StringCalculator(String input) {
+    if (Objects.isNull(input)) {
+      throw new IllegalArgumentException("잘못된 입력입니다.");
     }
+
+    Collections.addAll(values, input.split(" "));
+  }
+
+
+  public int process() {
+    int result = Integer.parseInt(Objects.requireNonNull(values.poll()));
+
+    while (!values.isEmpty()) {
+      Operator operator = Operator.of(values.poll());
+      int number = Integer.parseInt(Objects.requireNonNull(values.poll()));
+
+      result = operator.apply(result, number);
+    }
+
     return result;
-  }
-
-  private boolean isOperator(String operator) {
-    for (String s : OPERATORS) {
-      if (s.equals(operator)) {
-        return true;
-      }
-    }
-    return false;
-  }
-
-  private int calculate(String operator, int oldValue, String target) {
-    int newValue = Integer.parseInt(target);
-
-    if (operator.equals("+")) {
-      return oldValue + newValue;
-    }
-    if (operator.equals("-")) {
-      return oldValue - newValue;
-    }
-    if (operator.equals("*")) {
-      return oldValue * newValue;
-    }
-    if (operator.equals("/")) {
-      return oldValue / newValue;
-    }
-    return oldValue;
   }
 }
