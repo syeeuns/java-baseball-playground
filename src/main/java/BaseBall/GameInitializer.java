@@ -10,14 +10,14 @@ public class GameInitializer {
 
   private static final List<String> CANDIDATES = new ArrayList<>(makeCandidates());
 
-  private final String answer;
+  private final String[] answer;
 
   public GameInitializer() {
     Collections.shuffle(CANDIDATES);
-    this.answer = CANDIDATES.get(0);
+    this.answer = CANDIDATES.get(0).split("");
   }
 
-  public String getAnswer() {
+  public String[] getAnswer() {
     return answer;
   }
 
@@ -32,7 +32,7 @@ public class GameInitializer {
         .collect(Collectors.toList());
   }
 
-  private static boolean checkNumber(String num) {
+  public static boolean checkNumber(String num) {
     return !num.contains("0")
         && num.charAt(0) != num.charAt(1)
         && num.charAt(1) != num.charAt(2)
