@@ -21,6 +21,14 @@ public class GameInitializer {
     return answer;
   }
 
+  public static boolean checkNumber(String num) {
+    return !num.contains("0")
+        && num.length() == 3
+        && num.charAt(0) != num.charAt(1)
+        && num.charAt(1) != num.charAt(2)
+        && num.charAt(0) != num.charAt(2);
+  }
+
   private static List<String> makeCandidates() {
     List<Integer> intList = IntStream.range(123, 988)
         .boxed()
@@ -32,10 +40,4 @@ public class GameInitializer {
         .collect(Collectors.toList());
   }
 
-  public static boolean checkNumber(String num) {
-    return !num.contains("0")
-        && num.charAt(0) != num.charAt(1)
-        && num.charAt(1) != num.charAt(2)
-        && num.charAt(0) != num.charAt(2);
-  }
 }

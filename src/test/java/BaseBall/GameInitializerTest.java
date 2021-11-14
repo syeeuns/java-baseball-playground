@@ -1,13 +1,15 @@
 package BaseBall;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class GameInitializerTest {
-  @Test
-  void makeCandidates() {
-    GameInitializer gameInitializer = new GameInitializer();
-    System.out.println("gameInitializer.getAnswer() = " + gameInitializer.getAnswer()[0]);
-    System.out.println("gameInitializer.getAnswer() = " + gameInitializer.getAnswer()[1]);
-    System.out.println("gameInitializer.getAnswer() = " + gameInitializer.getAnswer()[2]);
+
+  @ParameterizedTest
+  @ValueSource(strings = {"111", "112", "12", "000", "100", "120", "1234"})
+  void checkNumber(String input) {
+    assertFalse(GameInitializer.checkNumber(input));
   }
 }

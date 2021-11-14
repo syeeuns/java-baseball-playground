@@ -26,7 +26,7 @@ public class Checker {
     return strike == 3;
   }
 
-  public void checkBall(String[] answer) {
+  private void checkBall(String[] answer) {
     String answerString = String.join("", answer);
     for (int i = 0; i < 3; i++) {
       checkOneBall(answerString, input[i]);
@@ -34,19 +34,19 @@ public class Checker {
     ball -= strike;
   }
 
-  public void checkStrike(String[] answer) {
+  private void checkStrike(String[] answer) {
     for (int i = 0; i < 3; i++) {
       checkOneStrike(answer[i], input[i]);
     }
   }
 
-  public void checkOneStrike(String answerElem, String inputElem) {
+  private void checkOneStrike(String answerElem, String inputElem) {
     if (answerElem.equals(inputElem)) {
       strike++;
     }
   }
 
-  public void checkOneBall(String answer, String inputElem) {
+  private void checkOneBall(String answer, String inputElem) {
     if (answer.contains(inputElem)) {
       ball++;
     }
