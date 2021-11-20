@@ -1,6 +1,6 @@
 package views;
 
-import BaseBall.GameInitializer;
+import baseball.GameInitializer;
 import java.util.Scanner;
 
 public class InputView {

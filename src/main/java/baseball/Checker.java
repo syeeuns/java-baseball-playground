@@ -1,4 +1,4 @@
-package BaseBall;
+package baseball;
 
 public class Checker {
 

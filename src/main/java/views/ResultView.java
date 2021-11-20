@@ -1,11 +1,15 @@
 package views;
 
-import BaseBall.Checker;
+import baseball.Checker;
 
 public class ResultView {
 
   public static void printResult(Checker checker, boolean result) {
-    System.out.println(checker.getBall() + "볼 " + checker.getStrike() + "스트라이크");
+    if (checker.getBall() == 0 && checker.getStrike() == 0) {
+      System.out.println("nothing");
+    } else {
+      System.out.println(checker.getBall() + "볼 " + checker.getStrike() + "스트라이크");
+    }
     endGame(result);
   }
 

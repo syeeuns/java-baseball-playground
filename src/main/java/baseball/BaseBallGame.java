@@ -1,4 +1,4 @@
-package BaseBall;
+package baseball;
 
 import java.util.Scanner;
 import views.InputView;
