@@ -19,6 +19,16 @@ public class Balls {
     return answerBalls;
   }
 
+  public PlayResult play(List<Integer> userNums) {
+    Balls userBalls = new Balls(userNums);
+    PlayResult result = new PlayResult();
+    for (Ball answer : answers) {
+      BallStatus status = userBalls.play(answer);
+      result.report(status);
+    }
+    return result;
+  }
+
   public BallStatus play(Ball userBall) {
     return answers.stream()
         .map(answer -> answer.play(userBall))

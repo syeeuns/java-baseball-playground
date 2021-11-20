@@ -1,46 +1,32 @@
 package baseball;
 
-import java.util.Objects;
-
 public class Ball {
 
 
   private final int position;
-  private final int no;
+  private final BallNumber no;
 
   public Ball(int position, int no) {
     this.position = position;
-    this.no = no;
+    this.no = new BallNumber(no);
   }
 
+
   public BallStatus play(Ball userBall) {
-    if (this.equals(userBall)) {
+    if (checkStrike(userBall)) {
       return BallStatus.STRIIKE;
     }
-    if (matchNo(userBall)) {
+    if (checkBall(userBall)) {
       return BallStatus.BALL;
     }
     return BallStatus.NOTHING;
   }
 
-  private boolean matchNo(Ball userBall) {
-    return userBall.no == no;
+  private boolean checkBall(Ball userBall) {
+    return no.equals(userBall.no);
   }
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    Ball ball = (Ball) o;
-    return position == ball.position && no == ball.no;
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(position, no);
+  private boolean checkStrike(Ball userBall) {
+    return userBall.position == position && checkBall(userBall);
   }
 }
