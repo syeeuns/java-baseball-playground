@@ -11,6 +11,10 @@ public class Balls {
     this.answers = mapBalls(answers);
   }
 
+  public List<Ball> getAnswers() {
+    return answers;
+  }
+
   private List<Ball> mapBalls(List<Integer> answers) {
     List<Ball> answerBalls = new ArrayList<>();
     for (int i = 0; i < 3; i++) {

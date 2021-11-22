@@ -11,7 +11,6 @@ public class Ball {
     this.no = new BallNumber(no);
   }
 
-
   public BallStatus play(Ball userBall) {
     if (checkStrike(userBall)) {
       return BallStatus.STRIIKE;
